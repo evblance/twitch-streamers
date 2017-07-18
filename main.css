@@ -1,123 +1,159 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: #9F9F8F;
+  background: #5d889d;
+  box-sizing: border-box;
 }
 
-div#wrapper {
-  background-color: #28698A;
-  max-width: 480px;
-  height: 70%;
-  margin: auto;
-  margin-top: 20%;
-  margin-bottom: 20%;
-  display: block;
+.app {
   align: center;
+  background: #28698a;
+  border-bottom: 5px solid rgba(0,0,0,0.5);
   border-radius: 5px;
-  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px 1px rgba(20,20,20,0.35);
+  display: block;
+  height: 70%;
+  margin: 20px auto 0;
+  max-width: 480px;
+  width: 100%;
 }
 
-div#ui-header {
-  color: #E8DD9B;
-  background-color: rgba(0, 0, 0, 0.5);
+.app__header {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 1em 1em 0em 1.5em;
+  color: #e8dd9b;
+  padding: 1rem 1rem 0 1.5rem;
 }
 
-#refresh {
-  padding-left: 20px;
-  padding-right: 5px;
-}
-
-#tabs {
-  width: 100%;
-  display: table;
-  padding-bottom: 2px;
-}
-
-div#tabs ul {
-  display: table;
-}
-
-.cell {
-  width: 33%;
-  padding: auto;
-  display: table-cell;
-  text-align: center;
-  cursor: pointer;
-  padding-bottom: 5px;
-}
-
-.underlined-cell {
-  border-bottom: 2px solid #E8DD9B;
-}
-
-.cell:hover {
-  color: white;
-}
-
-hr {
-  border-color: #E8DD9B;
-}
-
-div#users-panel {
-  padding: 0em 0em 1em 0em;
-  background-color: #E8DD9B;
-}
-
-h1 {
+.app__heading {
   font-family: 'Candal', sans-serif;
 }
 
-.user {
-  padding: 10px 10px 10px 10px;
-  margin: 1px 1px 2px 1px;
+.divider {
+  border-color: #e8dd9b;
 }
 
-.user-link:link {
-  display: inline-block;
-  padding-left: 10px;
-  color: rgb(10, 10, 10);
+.stream {
+  align-items: flex-start;
+  border-bottom: 1px solid #163a4c;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+  font-weight: '700';
+  justify-content: center;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.stream:hover {
+  background: #f7eBa6;
+}
+
+.stream--online {
+  background: #1e9737;
+}
+
+.stream--online:hover {
+  background: #27c247;
+}
+
+.stream--online .stream__info {
+  font-style: normal;
+}
+
+.stream__header {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.stream__icon {
+  border: 2px solid #E8DD9B;
+  border-radius: 12px;
+  box-shadow: 1px 1px 5px 0 rgba(20,20,20,0.25);
+  height: 50px;
+  margin: 2px;
+  width: 50px;
+}
+
+.stream__info {
+  font-family: 'Bree Serif', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.stream__link {
+  color: #0e2530;
+  padding: 0 0 0 10px;
   text-decoration: none;
 }
 
-.user-link:visited {
-  color: rgb(10, 10, 10);
+.streamers {
+  background: #e8dd9b;
+  overflow-y: auto;
+  padding: 0 0 1rem;
 }
 
-.user-link:hover {
-  color: rgb(50, 50, 50);
+.streamers__list {
+  list-style: none;
 }
 
-.online-user {
-  background-color:  #0BBC63;
-  font-family: 'Nunito', sans-serif;
-  font-weight: '700';
+.tab {
+  text-transform: uppercase;
+  transition: all 0.35s ease-in-out;
+  border: 2px solid #28698a;
+  align-self: flex-end;
+  margin: 5px auto 10px;
 }
 
-.online-user-description {
-  font-family: 'Bree Serif', serif;
-  font-size: 0.75em;
+.tab:hover {
+  color: #ddd;
 }
 
-.offline-user-description {
-  font-family: 'Bree Serif', serif;
-  font-style: italic;
-  font-size: 0.75em;
+.tab--active {
+  border-bottom-color: #e8dd9b;
 }
 
-.offline-user {
-  background-color:  #ffece6;
-  font-family: 'Nunito', sans-serif;
-  font-weight: '400';
+.tabs {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 40px;
+  padding: 5px;
 }
 
-.user-img {
-  vertical-align: middle;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 0 1px 1px;
-  border: 2px solid #E8DD9B;
-  border-radius: 12px;
-  margin: 2px 2px 2px 2px;
+
+@media screen and (max-width: 640px) {
+
+  .app {
+    border: 0;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+  }
+
+  .app__heading {
+    margin: 5px;
+  }
+
+
+  .streamers {
+    height: calc(100vh - 200px);
+  }
+
+  .tab {
+    font-size: 0.8rem;
+    padding: 0;
+  }
+
+  .fa-2x {
+    font-size: 1rem;
+  }
+
 }

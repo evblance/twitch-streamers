@@ -1,40 +1,58 @@
-<html>
-  <head>
-    <!-- Font links -->
-    <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
-    
-    <link href='https://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
-    
-    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
-    <!-- Font Awesome from CDN -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    
-    <link href="./main.css" rel="stylesheet" type="text/css">
+<!DOCTYPE html>
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
-    <script src="./main.js"></script>
-  </head>
-  
-  <body>
-    <div id="wrapper">
-      
-      <div id="ui-header">
-        <h1>Live on TwitchTV</h1>
-        <hr>
-        <div id="tabs">
-            <div id="show-all" class="cell">SHOW ALL</div>
-            <div id="show-online" class="cell">SHOW ONLINE</div>
-            <div id="show-offline" class="cell">SHOW OFFLINE</div>
-            <div id="refresh" class="cell"><i class="fa fa-refresh"></i></div>
-        </div>
-      </div>
+<html lang="en">
 
-      <div id="users-panel">
-        <!-- Content injected by jQuery -->
-      </div>
+<head>
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TwitchTV Streamers</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Candal%7CNunito:400,700%7CBree+Serif" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="./main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="app" ng-app="twitchApp" ng-controller="twitchCtrl">
+
+    <header class="app__header">
+      <h1 class="app__heading">Live on TwitchTV</h1>
+      <hr class="divider">
+      <ul class="tabs">
+        <li class="tab" ng-class="{ 'tab--active': tabIsActive(1) }" ng-click="showTab(1); setAllVisible()">Show&nbsp;All</li>
+        <li class="tab" ng-class="{ 'tab--active': tabIsActive(2) }" ng-click="showTab(2); setOnlineVisible()">Show&nbsp;Online</li>
+        <li class="tab" ng-class="{ 'tab--active': tabIsActive(3) }" ng-click="showTab(3); setOfflineVisible()">Show&nbsp;Offline</li>
+        <li class="tab tab--refresh" ng-click="getStreams(); showTab(1)"><i class="fa fa-2x fa-refresh" ng-class="{ 'fa-spin': streamsAreLoading() }"></i></li>
+      </ul>
+    </header>
+
+    <div class="streamers" ng-cloak>
+      <ul class="streamers__list">
+        <li class="streamers__list-item" ng-repeat="stream in shownStreamers">
+          <div class="stream" ng-class="{ 'stream--online': userOnline(stream) }">
+            <div class="stream__header">
+              <img class="stream__icon" ng-src="{{ stream.logo }}" alt="Logo of {{ stream.display_name }}">
+              <a class="stream__link" target="_blank" ng-href="{{ stream.url }}">{{ stream.display_name }}</a>
+            </div>
+            <div class="stream__info">{{ stream.status }}</div>
+          </div>
+        </li>
+      </ul>
     </div>
 
-  </body>
- </html>
+  </div>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js"></script>
+  <script src="./main.js"></script>
+
+</body>
+
+</html>

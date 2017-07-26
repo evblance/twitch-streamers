@@ -8,7 +8,6 @@ app.controller('twitchCtrl', function($scope, $http) {
     "ESL_SC2",
     "OgamingSC2",
     "cretetion",
-    "storbeck",
     "freecodecamp",
     "habathcx",
     "RobotCaleb",
